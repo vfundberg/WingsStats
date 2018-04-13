@@ -8,16 +8,34 @@
 
 import UIKit
 
-class TopListTableViewController: UITableViewController {
-
+class TopListTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    var searchController : UISearchController!
+    var searchResult : [String] = []
+    var players : [String] = []
+    
+    
+    var shouldUseSearchResult : Bool {
+        if let t = searchController.searchBar.text {
+            if t.isEmpty {
+                return false
+            }
+        } else {
+            return false
+        }
+        return searchController.isActive
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        title = "Search for a specific player"
+        definesPresentationContext = true
+        
+        searchController = UISearchController(searchResultsController: nil)
+        searchController.searchResultsUpdater = self
+        searchController.dimsBackgroundDuringPresentation = false
+        navigationItem.searchController = searchController
+        players = ["Victor Fundberg","Claudio Agus","Joakim Örneflo","Johannes Andersson","Jacob Henriksson","Alessandro Agus","Andreas Esmyr","Christoffer Strand","Adam Broberg","Peter Morer0","Tobias Bengston","Andreas Lundin","Pontus Vallin"]
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,27 +43,47 @@ class TopListTableViewController: UITableViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    // MARK: - Table view data source
+    func updateSearchResults(for searchController: UISearchController) {
+        if let text = searchController.searchBar.text {
+            searchResult = players.filter { $0.lowercased().contains(text.lowercased()) }
+        } else {
+            searchResult = []
+        }
+        tableView.reloadData()
+    }
+    
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         // #warning Incomplete implementation, return the number of sections
-        return 0
+        return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return 0
+        if shouldUseSearchResult {
+            return searchResult.count
+        } else {
+            return players.count
+        }
+        
     }
 
-    /*
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
 
-        // Configure the cell...
+        if shouldUseSearchResult {
+            let playerName = searchResult[indexPath.row]
+            cell.textLabel?.text = playerName
+        } else {
+            let playerName = players[indexPath.row]
+            cell.textLabel?.text = playerName
+        }
+        
 
         return cell
     }
-    */
+    
 
     /*
     // Override to support conditional editing of the table view.
