@@ -100,10 +100,10 @@
             </objects>
             <point key="canvasLocation" x="940" y="-1039.4302848575712"/>
         </scene>
-        <!--View Controller-->
+        <!--Add New Team View Controller-->
         <scene sceneID="0Uz-DF-F0W">
             <objects>
-                <viewController id="yCZ-mP-4LG" sceneMemberID="viewController">
+                <viewController id="yCZ-mP-4LG" customClass="AddNewTeamViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qkG-qw-xi4">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -165,10 +165,10 @@
             </objects>
             <point key="canvasLocation" x="1714.4000000000001" y="-827.13643178410803"/>
         </scene>
-        <!--Add Players Or Team View Controller-->
+        <!--Choose From Existing Team View Controller-->
         <scene sceneID="mLi-fm-yT1">
             <objects>
-                <viewController id="boy-vK-NpQ" customClass="AddPlayersOrTeamViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="boy-vK-NpQ" customClass="ChooseFromExistingTeamViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="J0d-tK-nax">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -330,7 +330,7 @@
         <image name="add-icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="bxP-Y6-ebU"/>
+        <segue reference="ejm-0f-S1B"/>
         <segue reference="4DX-vC-RJ4"/>
     </inferredMetricsTieBreakers>
 </document>

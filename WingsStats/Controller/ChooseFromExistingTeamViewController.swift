@@ -1,5 +1,5 @@
 //
-//  AddPlayersOrTeamViewController.swift
+//  ChooseFromExistingTeamViewController.swift
 //  WingsStats
 //
 //  Created by Victor Fundberg on 2018-04-16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddPlayersOrTeamViewController: UIViewController {
+class ChooseFromExistingTeamViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
