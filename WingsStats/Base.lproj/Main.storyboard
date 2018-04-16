@@ -13,7 +13,6 @@
         <!--Top List Table View Controller-->
         <scene sceneID="953-tu-zf7">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ek-Ap-oig" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <tableViewController id="iuO-dY-1Ae" customClass="TopListTableViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="yHL-Si-rFC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -35,13 +34,13 @@
                         </connections>
                     </tableView>
                 </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1Ek-Ap-oig" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1868" y="-528"/>
         </scene>
         <!--WingsStats-->
         <scene sceneID="JdV-nu-Ihh">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="E5x-Tc-XeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController title="WingsStats" id="ZmO-Aq-Mmh" customClass="StartViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="vb2-dU-ZJw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -69,13 +68,58 @@
                     </view>
                     <navigationItem key="navigationItem" title="Start" id="NXo-rq-oZq"/>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E5x-Tc-XeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="940" y="-1039.4302848575712"/>
+        </scene>
+        <!--Add Players Or Team View Controller-->
+        <scene sceneID="mLi-fm-yT1">
+            <objects>
+                <viewController id="boy-vK-NpQ" customClass="AddPlayersOrTeamViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="J0d-tK-nax">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kD6-hC-qoO">
+                                <rect key="frame" x="16" y="90" width="343" height="88"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                            </pickerView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NbR-oA-E34">
+                                <rect key="frame" x="139" y="186" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3t-PP-kvo">
+                                <rect key="frame" x="164" y="224" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Kh5-tK-kEE">
+                                <rect key="frame" x="139" y="273" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0kX-ox-uPE">
+                                <rect key="frame" x="164" y="311" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="mlg-ra-cLc"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="L0K-zj-Riu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684" y="-1200.4497751124438"/>
         </scene>
         <!--Game View Controller-->
         <scene sceneID="pfN-TW-FL3">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fVp-7e-EgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController id="TcE-9J-787" customClass="GameViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="txo-gC-9c9">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -147,13 +191,13 @@
                         <outlet property="tableView" destination="yV6-mp-sLn" id="tTl-O1-HyP"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fVp-7e-EgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1868" y="-1200"/>
+            <point key="canvasLocation" x="2385" y="-1199"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="rhJ-9d-7bG">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="FOI-xL-wqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZID-Ru-57y" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cQ4-wY-Xds">
@@ -165,6 +209,7 @@
                         <segue destination="ZmO-Aq-Mmh" kind="relationship" relationship="rootViewController" id="zWZ-vy-P1t"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="FOI-xL-wqt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="0.80000000000000004" y="-1039.4302848575712"/>
         </scene>

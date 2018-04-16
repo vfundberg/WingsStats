@@ -14,7 +14,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedPlayers : [String] = []
     var selectedIndexPath : [IndexPath] = []
     var players : [String] = []
-    var newGame = Game()
+    var newTeam = Team()
     
     
     @IBOutlet weak var tableView: UITableView!

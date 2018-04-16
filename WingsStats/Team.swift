@@ -1,5 +1,5 @@
 //
-//  Game.swift
+//  Team.swift
 //  WingsStats
 //
 //  Created by Victor Fundberg on 2018-04-16.
@@ -8,7 +8,6 @@
 
 import UIKit
 
-class Game {
-    var teamPlaying : Team = Team()
-    var result : String = ""
+class Team {
+    var playersInTeam : [Player] = []
 }
