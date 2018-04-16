@@ -9,5 +9,6 @@
 import UIKit
 
 class Team {
+    let teamName : String = ""
     var playersInTeam : [Player] = []
 }

@@ -9,15 +9,10 @@
 import UIKit
 
 class Player {
-    var name : String = ""
-    var position : String = ""
+    let name : String = ""
     var gamesPlayed : Int = 0
     var plus : Int = 0
     var minus : Int = 0
-    var pPPlus : Int = 0
-    var pPMinus : Int = 0
-    var bPPlus : Int = 0
-    var bPMinus : Int = 0
-    var goals : Int = 0
-    var assists : Int = 0
+    var actualGameStats : Int = 0
+    var total : Int = 0
 }

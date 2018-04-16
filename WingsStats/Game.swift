@@ -10,5 +10,8 @@ import UIKit
 
 class Game {
     var teamPlaying : Team = Team()
+    let opponents : String = ""
+    var yourScore : Int = 0
+    var opponentsScore : Int = 0
     var result : String = ""
 }
