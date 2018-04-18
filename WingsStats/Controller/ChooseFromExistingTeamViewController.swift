@@ -8,12 +8,18 @@
 
 import UIKit
 
-class ChooseFromExistingTeamViewController: UIViewController {
-
+class ChooseFromExistingTeamViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
+    
+    @IBOutlet weak var teamPicker: UIPickerView!
+    @IBOutlet weak var chooseTeamButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    let teams = ["A-laget","B-laget","Juniorlaget"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        teamPicker.delegate = self
+        teamPicker.dataSource = self
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,6 +28,21 @@ class ChooseFromExistingTeamViewController: UIViewController {
     }
     
 
+    // Delegates and DataSource
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return teams.count
+    }
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return teams[row]
+    }
+    
+    
+    
     /*
     // MARK: - Navigation
 

@@ -10,11 +10,12 @@ import UIKit
 
 class StartViewController: UIViewController {
 
-
+    @IBOutlet weak var existingTeamButton: UIButton!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        existingTeamButton.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
