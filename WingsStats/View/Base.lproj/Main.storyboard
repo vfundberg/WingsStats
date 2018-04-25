@@ -350,6 +350,9 @@
                                     <constraint firstAttribute="width" constant="70" id="Z7H-Wx-uNc"/>
                                 </constraints>
                                 <state key="normal" title="-" image="Action-remove-icon"/>
+                                <connections>
+                                    <action selector="addMinusStat:" destination="TcE-9J-787" eventType="touchUpInside" id="XuZ-qe-nLQ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

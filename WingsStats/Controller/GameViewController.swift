@@ -36,13 +36,29 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBAction func addPlusStat(_ sender: Any) {
         selectedIndexpath = self.tableView.indexPathsForSelectedRows!
         for p in selectedIndexpath {
-            // fixa så att man lägger till statsen på varje spelare som är markerad
+            let plusPlayer = team.playersInTeam[p.row]
+            addPlusInGame(player: plusPlayer)
         }
         
         for p in selectedIndexpath {
             tableView.deselectRow(at: p, animated: true)
         }
+        self.tableView.reloadData()
     }
+    @IBAction func addMinusStat(_ sender: Any) {
+        selectedIndexpath = self.tableView.indexPathsForSelectedRows!
+        for p in selectedIndexpath {
+            let minusPlayer = team.playersInTeam[p.row]
+            addMinusInGame(player: minusPlayer)
+        }
+        
+        for p in selectedIndexpath {
+            tableView.deselectRow(at: p, animated: true)
+        }
+        self.tableView.reloadData()
+    }
+    
+    
     
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -56,7 +72,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "playerNameAndStats", for: indexPath) as! PlayerTableViewCell
         cell.nameLabel.text = team.playersInTeam[indexPath.row].name
-        //cell.statsLabel.text = // statsen för spelaren
+        cell.statsLabel.text = "\(team.playersInTeam[indexPath.row].gameTotal)"
         
         return cell
     }

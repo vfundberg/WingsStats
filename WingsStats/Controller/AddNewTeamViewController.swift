@@ -71,6 +71,9 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
             self.present(alert, animated: true, completion: nil)
         }
     }
+    
+    
+    // TODO: funkar inte, måste stoppa användaren ifall det inte är minst 5 spelare skapade.
     @IBAction func startGame(_ sender: Any) {
         if newTeam.playersInTeam.count > 5 {
             let alert = UIAlertController(title: "Error", message: "You have to create at least 5 players to start a game.", preferredStyle: .alert)
