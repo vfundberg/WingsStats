@@ -7,19 +7,21 @@
 //
 
 import UIKit
+import Firebase
 
 class ChooseFromExistingTeamViewController: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
-    
     @IBOutlet weak var teamPicker: UIPickerView!
     @IBOutlet weak var chooseTeamButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     let teams = ["A-laget","B-laget","Juniorlaget"]
+    var dataBase : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         teamPicker.delegate = self
         teamPicker.dataSource = self
+        dataBase = Database.database().reference()
     }
 
     override func didReceiveMemoryWarning() {

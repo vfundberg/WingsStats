@@ -7,23 +7,33 @@
 //
 
 import UIKit
+import Firebase
 
 class StartViewController: UIViewController {
-
-    @IBOutlet weak var existingTeamButton: UIButton!
     
+    @IBOutlet weak var existingTeamButton: UIButton!
+    var dataBase : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        existingTeamButton.isHidden = true
+        dataBase = Database.database().reference()
+        checkIfTeamsExist()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    func checkIfTeamsExist() {
+        // kolla igenom databasen ifall det finns några lag med i den, i sånna fall så ska knappen med starta med lag visas, annars inte
+        //if lag finns {
+        // print("Teams are existing in the database")
+        //} else {
+        //existingTeamButton.isHidden = true
+        //}
+        
+    }
     
-
 //    // In a storyboard-based application, you will often want to do a little preparation before navigation
 //    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        // Get the new view controller using segue.destinationViewController.

@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import Firebase
 
 class TopListTableViewController: UITableViewController, UISearchResultsUpdating {
     
     var searchController : UISearchController!
     var searchResult : [String] = []
     var players : [String] = []
-    
+    var dataBase : DatabaseReference!
     
     var shouldUseSearchResult : Bool {
         if let t = searchController.searchBar.text {
@@ -29,11 +30,13 @@ class TopListTableViewController: UITableViewController, UISearchResultsUpdating
         super.viewDidLoad()
         title = "Search for a specific player"
         definesPresentationContext = true
-        
+        dataBase = Database.database().reference()
         searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.dimsBackgroundDuringPresentation = false
         navigationItem.searchController = searchController
+        
+        
         players = ["Victor Fundberg","Claudio Agus","Joakim Örneflo","Johannes Andersson","Jacob Henriksson","Alessandro Agus","Andreas Esmyr","Christoffer Strand","Adam Broberg","Peter Morer0","Tobias Bengston","Andreas Lundin","Pontus Vallin"]
         
     }

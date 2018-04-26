@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class PlayerTableViewCell : UITableViewCell {
  
@@ -19,14 +20,14 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
   
     var team : Team = Team()
     var selectedIndexpath : [IndexPath] = []
-    
     @IBOutlet weak var tableView: UITableView!
+    var dataBase : DatabaseReference!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-    
+        dataBase = Database.database().reference()
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

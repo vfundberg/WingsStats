@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 extension UIViewController {
     func hideKeyboard(){
@@ -25,11 +26,14 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var startGameButton: UIButton!
     let newTeam :  Team =  Team()
+    var dataBase : DatabaseReference!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        dataBase = Database.database().reference()
         self.hideKeyboard()
     }
 
@@ -41,6 +45,8 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func addTeam(_ sender: Any) {
         if addText.hasText {
             newTeam.teamName = addText.text!
+            // ÄNDRA HÄR SÅ ATT DET HÄR SKAPAS ETT LAGNAMN DÄR SPELARNA KAN HAMNA UNDER
+            dataBase.child("teams").child(newTeam.teamName)
             teamLabel.text = newTeam.teamName
             print(newTeam.teamName)
             addButton.isHidden = true
@@ -59,6 +65,9 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
             let playerName = addText.text
             let newPlayer : Player = Player(name: playerName!)
             newTeam.playersInTeam.append(newPlayer)
+            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["plusStat" : 0])
+            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["minusStat" : 0])
+            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["total" : 0])
             tableView.reloadData()
             for p in newTeam.playersInTeam {
             print(p.name)

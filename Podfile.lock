@@ -2,6 +2,9 @@ PODS:
   - Firebase/Core (4.13.0):
     - FirebaseAnalytics (= 4.2.0)
     - FirebaseCore (= 4.0.20)
+  - Firebase/Database (4.13.0):
+    - Firebase/Core
+    - FirebaseDatabase (= 4.1.5)
   - FirebaseAnalytics (4.2.0):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
@@ -27,7 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - Firebase/Core
-  - FirebaseDatabase
+  - Firebase/Database
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
@@ -50,6 +53,6 @@ SPEC CHECKSUMS:
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
 
-PODFILE CHECKSUM: f17b5a71fc4ceba5bb21e51f928dccfd27f739ab
+PODFILE CHECKSUM: 74b1d01e2862cdbcaade3d7f8d795aabc7dd1e07
 
 COCOAPODS: 1.5.0
