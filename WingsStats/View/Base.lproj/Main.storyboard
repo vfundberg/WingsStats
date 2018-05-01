@@ -80,16 +80,16 @@
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" id="6Br-Ds-TS7"/>
-                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="bottom" secondItem="F7T-Qm-L4u" secondAttribute="bottom" constant="240" id="6YQ-NA-21Q"/>
-                            <constraint firstAttribute="trailing" secondItem="Cjc-Ud-ytx" secondAttribute="trailing" id="VU2-rL-1oD"/>
-                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="trailing" secondItem="F7T-Qm-L4u" secondAttribute="trailing" constant="95" id="d9d-bE-yWj"/>
-                            <constraint firstItem="8RU-eN-tn0" firstAttribute="top" secondItem="3f5-dI-ja3" secondAttribute="bottom" constant="98" id="fyB-fr-y2l"/>
-                            <constraint firstItem="3f5-dI-ja3" firstAttribute="top" secondItem="Cjc-Ud-ytx" secondAttribute="bottom" constant="8" id="n4D-jc-xhK"/>
-                            <constraint firstItem="8RU-eN-tn0" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" constant="-0.5" id="oAv-dr-OTD"/>
-                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" constant="94" id="quK-AR-pgg"/>
-                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="top" secondItem="NAy-gJ-k2V" secondAttribute="top" constant="86" id="tFM-Ou-1Cw"/>
-                            <constraint firstItem="3f5-dI-ja3" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" constant="-1.5" id="xBu-8z-Uq0"/>
+                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="leading" secondItem="vb2-dU-ZJw" secondAttribute="leading" id="0Xj-j9-w6Y"/>
+                            <constraint firstItem="8RU-eN-tn0" firstAttribute="top" secondItem="F7T-Qm-L4u" secondAttribute="bottom" constant="33" id="3F7-1Y-6XR"/>
+                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="centerX" secondItem="F7T-Qm-L4u" secondAttribute="centerX" id="5me-oA-sbn"/>
+                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="top" secondItem="NAy-gJ-k2V" secondAttribute="top" constant="86" id="Ank-Zo-6yA"/>
+                            <constraint firstItem="3f5-dI-ja3" firstAttribute="top" secondItem="Cjc-Ud-ytx" secondAttribute="bottom" constant="8" symbolic="YES" id="Lu6-J5-IVm"/>
+                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="centerX" secondItem="8RU-eN-tn0" secondAttribute="centerX" id="WPM-82-gvX"/>
+                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="trailing" secondItem="3f5-dI-ja3" secondAttribute="trailing" constant="86" id="l6z-3C-vp7"/>
+                            <constraint firstItem="3f5-dI-ja3" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" constant="83" id="sXB-lo-E2x"/>
+                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="top" secondItem="3f5-dI-ja3" secondAttribute="bottom" constant="33" id="v8L-NQ-iiH"/>
+                            <constraint firstAttribute="trailing" secondItem="Cjc-Ud-ytx" secondAttribute="trailing" id="xPu-bj-ZKa"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NAy-gJ-k2V"/>
                     </view>
@@ -339,7 +339,7 @@
         <image name="add-icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ejm-0f-S1B"/>
+        <segue reference="N0Y-EQ-D4w"/>
         <segue reference="4DX-vC-RJ4"/>
     </inferredMetricsTieBreakers>
 </document>

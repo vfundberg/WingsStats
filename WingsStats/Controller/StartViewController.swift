@@ -21,7 +21,8 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        existingTeams.dataSource = self
+        existingTeams.delegate = self
         dataBase = Database.database().reference()
         checkIfTeamsExist()
     }
