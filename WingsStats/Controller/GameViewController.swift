@@ -19,7 +19,6 @@ class PlayerTableViewCell : UITableViewCell {
 class GameViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
     var team : Team = Team()
-    var selectedIndexpath : [IndexPath] = []
     @IBOutlet weak var tableView: UITableView!
     var dataBase : DatabaseReference!
     
@@ -35,31 +34,57 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     @IBAction func addPlusStat(_ sender: Any) {
-        selectedIndexpath = self.tableView.indexPathsForSelectedRows!
-        for p in selectedIndexpath {
-            let plusPlayer = team.playersInTeam[p.row]
-            addPlusInGame(player: plusPlayer)
+        if let selectedIndexPaths = self.tableView.indexPathsForSelectedRows {
+            if let playersExist = selectedIndexPaths.count as? Int, playersExist > 0  {
+                for p in selectedIndexPaths {
+                    let plusPlayer = team.playersInTeam[p.row]
+                    addPlusInGame(player: plusPlayer)
+                }
+                
+                for p in selectedIndexPaths {
+                    tableView.deselectRow(at: p, animated: true)
+                }
+                self.tableView.reloadData()
+            } else {
+                presentStatsAlert()
+            }
+        } else {
+            presentStatsAlert()
         }
-        
-        for p in selectedIndexpath {
-            tableView.deselectRow(at: p, animated: true)
-        }
-        self.tableView.reloadData()
     }
     @IBAction func addMinusStat(_ sender: Any) {
-        selectedIndexpath = self.tableView.indexPathsForSelectedRows!
-        for p in selectedIndexpath {
-            let minusPlayer = team.playersInTeam[p.row]
-            addMinusInGame(player: minusPlayer)
+        if let selectedIndexPaths = self.tableView.indexPathsForSelectedRows {
+            if let playersExist = selectedIndexPaths.count as? Int, playersExist > 0 {
+                for p in selectedIndexPaths {
+                let minusPlayer = team.playersInTeam[p.row]
+                addMinusInGame(player: minusPlayer)
+                }
+            
+                for p in selectedIndexPaths {
+                    tableView.deselectRow(at: p, animated: true)
+                }
+                self.tableView.reloadData()
+            } else {
+            presentStatsAlert()
+            }
+        } else {
+            presentStatsAlert()
         }
         
-        for p in selectedIndexpath {
-            tableView.deselectRow(at: p, animated: true)
-        }
-        self.tableView.reloadData()
     }
     
-    
+    @IBAction func endGame(_ sender: Any) {
+        for player in team.playersInTeam {
+            finishAGame(player: player)
+        }
+        self.navigationController?.popViewController(animated: true)
+    }
+    func presentStatsAlert() {
+        let alert = UIAlertController(title: "Error", message: "You have to choose a player to add stats for.", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in })
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
     
     
     func numberOfSections(in tableView: UITableView) -> Int {

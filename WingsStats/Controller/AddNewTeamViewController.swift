@@ -45,7 +45,7 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func addTeam(_ sender: Any) {
         if addText.hasText {
             newTeam.teamName = addText.text!
-            // ÄNDRA HÄR SÅ ATT DET HÄR SKAPAS ETT LAGNAMN DÄR SPELARNA KAN HAMNA UNDER
+            // ÄNDRA HÄR SÅ ATT DET HÄR SKAPAS ETT LAGNAMN DÄR SPELARNA KAN HAMNA UNDER, just nu blir det bara teams - players - Victor Fundberg
             dataBase.child("teams").child(newTeam.teamName)
             teamLabel.text = newTeam.teamName
             print(newTeam.teamName)
@@ -82,14 +82,9 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     
-    // TODO: funkar inte, måste stoppa användaren ifall det inte är minst 5 spelare skapade.
+    
     @IBAction func startGame(_ sender: Any) {
-        if newTeam.playersInTeam.count > 5 {
-            let alert = UIAlertController(title: "Error", message: "You have to create at least 5 players to start a game.", preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in })
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
-        }
+    // vill få det så att viewcontrollers "dör" när man är klar med dem så att man inte kan hålla på och gå fram och tillbaka mellan en match och till att lägga till olika spelare. Det ska inte gå. 
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

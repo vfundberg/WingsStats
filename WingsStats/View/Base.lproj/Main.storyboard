@@ -48,55 +48,56 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8RU-eN-tn0">
-                                <rect key="frame" x="80" y="201" width="214" height="32"/>
+                                <rect key="frame" x="80" y="460" width="214" height="32"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="New game with new team "/>
                                 <connections>
+                                    <action selector="gameWithNewTeam:" destination="ZmO-Aq-Mmh" eventType="touchUpInside" id="Fco-is-Gwm"/>
                                     <segue destination="yCZ-mP-4LG" kind="show" id="iTo-10-GRN"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f5-dI-ja3">
+                                <rect key="frame" x="83" y="330" width="206" height="32"/>
+                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
+                                <state key="normal" title="New game with this team"/>
+                                <connections>
+                                    <action selector="gameWithExistingTeam:" destination="ZmO-Aq-Mmh" eventType="touchUpInside" id="VPG-Xe-ZgM"/>
+                                    <segue destination="TcE-9J-787" kind="show" identifier="existingTeamGame" id="N0Y-EQ-D4w"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Cjc-Ud-ytx">
+                                <rect key="frame" x="0.0" y="106" width="375" height="216"/>
+                            </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="F7T-Qm-L4u">
-                                <rect key="frame" x="96" y="618" width="186" height="32"/>
+                                <rect key="frame" x="94" y="395" width="186" height="32"/>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="Show this teams totals"/>
                                 <connections>
+                                    <action selector="showTotals:" destination="ZmO-Aq-Mmh" eventType="touchUpInside" id="p3l-i1-fuu"/>
                                     <segue destination="iuO-dY-1Ae" kind="show" id="WcZ-kW-1nq"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3f5-dI-ja3">
-                                <rect key="frame" x="68" y="163" width="240" height="32"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="New game with existing team"/>
-                                <connections>
-                                    <segue destination="boy-vK-NpQ" kind="show" id="Eg4-Xu-5ox"/>
-                                </connections>
-                            </button>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yvx-CG-7Vz">
-                                <rect key="frame" x="46" y="523" width="280" height="86"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="86" id="pef-v1-G4P"/>
-                                </constraints>
-                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="bottom" secondItem="F7T-Qm-L4u" secondAttribute="bottom" constant="17" id="6YQ-NA-21Q"/>
-                            <constraint firstItem="Yvx-CG-7Vz" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" constant="46" id="CwG-Ze-U7I"/>
-                            <constraint firstAttribute="bottom" secondItem="Yvx-CG-7Vz" secondAttribute="bottom" constant="58" id="SLC-WJ-eRX"/>
-                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="top" secondItem="Yvx-CG-7Vz" secondAttribute="bottom" constant="9" id="Ygn-1r-MMZ"/>
-                            <constraint firstItem="3f5-dI-ja3" firstAttribute="top" secondItem="NAy-gJ-k2V" secondAttribute="top" constant="143" id="br1-tB-chm"/>
-                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="trailing" secondItem="F7T-Qm-L4u" secondAttribute="trailing" constant="93" id="d9d-bE-yWj"/>
-                            <constraint firstItem="8RU-eN-tn0" firstAttribute="top" secondItem="3f5-dI-ja3" secondAttribute="bottom" constant="6" id="fyB-fr-y2l"/>
-                            <constraint firstItem="8RU-eN-tn0" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" id="oAv-dr-OTD"/>
-                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" constant="96" id="quK-AR-pgg"/>
-                            <constraint firstItem="3f5-dI-ja3" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" id="xBu-8z-Uq0"/>
-                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="trailing" secondItem="Yvx-CG-7Vz" secondAttribute="trailing" constant="49" id="xnw-Ao-oUq"/>
+                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" id="6Br-Ds-TS7"/>
+                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="bottom" secondItem="F7T-Qm-L4u" secondAttribute="bottom" constant="240" id="6YQ-NA-21Q"/>
+                            <constraint firstAttribute="trailing" secondItem="Cjc-Ud-ytx" secondAttribute="trailing" id="VU2-rL-1oD"/>
+                            <constraint firstItem="NAy-gJ-k2V" firstAttribute="trailing" secondItem="F7T-Qm-L4u" secondAttribute="trailing" constant="95" id="d9d-bE-yWj"/>
+                            <constraint firstItem="8RU-eN-tn0" firstAttribute="top" secondItem="3f5-dI-ja3" secondAttribute="bottom" constant="98" id="fyB-fr-y2l"/>
+                            <constraint firstItem="3f5-dI-ja3" firstAttribute="top" secondItem="Cjc-Ud-ytx" secondAttribute="bottom" constant="8" id="n4D-jc-xhK"/>
+                            <constraint firstItem="8RU-eN-tn0" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" constant="-0.5" id="oAv-dr-OTD"/>
+                            <constraint firstItem="F7T-Qm-L4u" firstAttribute="leading" secondItem="NAy-gJ-k2V" secondAttribute="leading" constant="94" id="quK-AR-pgg"/>
+                            <constraint firstItem="Cjc-Ud-ytx" firstAttribute="top" secondItem="NAy-gJ-k2V" secondAttribute="top" constant="86" id="tFM-Ou-1Cw"/>
+                            <constraint firstItem="3f5-dI-ja3" firstAttribute="centerX" secondItem="vb2-dU-ZJw" secondAttribute="centerX" constant="-1.5" id="xBu-8z-Uq0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NAy-gJ-k2V"/>
                     </view>
                     <navigationItem key="navigationItem" title="Start" id="NXo-rq-oZq"/>
                     <connections>
                         <outlet property="existingTeamButton" destination="3f5-dI-ja3" id="NrC-Mg-KwN"/>
+                        <outlet property="existingTeams" destination="Cjc-Ud-ytx" id="3K6-ES-Gp8"/>
+                        <outlet property="totalsButton" destination="F7T-Qm-L4u" id="HIG-Fb-xCb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E5x-Tc-XeA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -200,76 +201,6 @@
             </objects>
             <point key="canvasLocation" x="1714.4000000000001" y="-827.13643178410803"/>
         </scene>
-        <!--Choose From Existing Team View Controller-->
-        <scene sceneID="mLi-fm-yT1">
-            <objects>
-                <viewController id="boy-vK-NpQ" customClass="ChooseFromExistingTeamViewController" customModule="WingsStats" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="J0d-tK-nax">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kD6-hC-qoO">
-                                <rect key="frame" x="16" y="64" width="343" height="88"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="88" id="C7d-20-pj4"/>
-                                </constraints>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a3t-PP-kvo">
-                                <rect key="frame" x="134" y="161" width="109" height="32"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="Choose team"/>
-                            </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="7hH-A9-wk9">
-                                <rect key="frame" x="0.0" y="198" width="375" height="398"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="ZdI-iU-1R5">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ZdI-iU-1R5" id="pmL-eW-EOO">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IG6-E6-LBF">
-                                <rect key="frame" x="144" y="618" width="91" height="32"/>
-                                <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="Start game"/>
-                                <connections>
-                                    <segue destination="TcE-9J-787" kind="show" id="bxP-Y6-ebU"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstItem="IG6-E6-LBF" firstAttribute="top" secondItem="7hH-A9-wk9" secondAttribute="bottom" constant="22" id="DRs-kO-xEn"/>
-                            <constraint firstItem="kD6-hC-qoO" firstAttribute="leading" secondItem="J0d-tK-nax" secondAttribute="leadingMargin" id="NGd-ZK-2l7"/>
-                            <constraint firstItem="kD6-hC-qoO" firstAttribute="top" secondItem="mlg-ra-cLc" secondAttribute="top" constant="44" id="Qvk-cS-aCm"/>
-                            <constraint firstItem="mlg-ra-cLc" firstAttribute="bottom" secondItem="IG6-E6-LBF" secondAttribute="bottom" constant="17" id="Tbb-0r-Bl3"/>
-                            <constraint firstItem="mlg-ra-cLc" firstAttribute="trailing" secondItem="a3t-PP-kvo" secondAttribute="trailing" constant="132" id="WHM-R4-fAc"/>
-                            <constraint firstItem="mlg-ra-cLc" firstAttribute="trailing" secondItem="IG6-E6-LBF" secondAttribute="trailing" constant="140" id="WbO-2W-VGI"/>
-                            <constraint firstItem="7hH-A9-wk9" firstAttribute="top" secondItem="a3t-PP-kvo" secondAttribute="bottom" constant="5" id="Xfe-oM-wiP"/>
-                            <constraint firstItem="kD6-hC-qoO" firstAttribute="centerX" secondItem="7hH-A9-wk9" secondAttribute="centerX" id="Zhr-7n-kau"/>
-                            <constraint firstItem="a3t-PP-kvo" firstAttribute="leading" secondItem="mlg-ra-cLc" secondAttribute="leading" constant="134" id="e2A-pz-afo"/>
-                            <constraint firstItem="IG6-E6-LBF" firstAttribute="leading" secondItem="mlg-ra-cLc" secondAttribute="leading" constant="144" id="iOd-7J-Jgo"/>
-                            <constraint firstItem="a3t-PP-kvo" firstAttribute="top" secondItem="kD6-hC-qoO" secondAttribute="bottom" constant="9" id="lBL-qO-RSk"/>
-                            <constraint firstItem="7hH-A9-wk9" firstAttribute="leading" secondItem="J0d-tK-nax" secondAttribute="leading" id="nHX-if-QT2"/>
-                            <constraint firstAttribute="trailing" secondItem="7hH-A9-wk9" secondAttribute="trailing" id="zPj-KV-Ztl"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="mlg-ra-cLc"/>
-                    </view>
-                    <connections>
-                        <outlet property="chooseTeamButton" destination="a3t-PP-kvo" id="Zvk-x0-py0"/>
-                        <outlet property="tableView" destination="7hH-A9-wk9" id="vSX-wr-hHJ"/>
-                        <outlet property="teamPicker" destination="kD6-hC-qoO" id="ZNN-hM-q4U"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="L0K-zj-Riu" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1717.5999999999999" y="-1505.3973013493255"/>
-        </scene>
         <!--Game View Controller-->
         <scene sceneID="pfN-TW-FL3">
             <objects>
@@ -294,7 +225,8 @@
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
                                 <state key="normal" title="End game"/>
                                 <connections>
-                                    <segue destination="ZmO-Aq-Mmh" kind="show" id="4DX-vC-RJ4"/>
+                                    <action selector="endGame:" destination="TcE-9J-787" eventType="touchUpInside" id="MyZ-4b-KUe"/>
+                                    <segue destination="ZmO-Aq-Mmh" kind="show" identifier="endGame" id="4DX-vC-RJ4"/>
                                 </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yV6-mp-sLn">
@@ -359,14 +291,16 @@
                         <constraints>
                             <constraint firstItem="yV6-mp-sLn" firstAttribute="top" secondItem="jGL-cg-bX3" secondAttribute="top" constant="43" id="AXI-g8-eb3"/>
                             <constraint firstItem="jGL-cg-bX3" firstAttribute="bottom" secondItem="8wG-NU-t4I" secondAttribute="bottom" constant="17" id="DWs-Qj-kk0"/>
+                            <constraint firstItem="jGL-cg-bX3" firstAttribute="trailing" secondItem="7N9-6l-oup" secondAttribute="trailing" constant="16" id="FkW-Cf-ZJT"/>
                             <constraint firstItem="ITa-8j-8UG" firstAttribute="trailing" secondItem="7N9-6l-oup" secondAttribute="trailing" id="JlM-0J-3Oc"/>
                             <constraint firstItem="8wG-NU-t4I" firstAttribute="top" secondItem="yV6-mp-sLn" secondAttribute="bottom" constant="8" symbolic="YES" id="KJ0-WA-UdV"/>
-                            <constraint firstItem="jGL-cg-bX3" firstAttribute="bottom" secondItem="7N9-6l-oup" secondAttribute="bottom" constant="232" id="NV7-N3-gZP"/>
+                            <constraint firstItem="jGL-cg-bX3" firstAttribute="bottom" secondItem="7N9-6l-oup" secondAttribute="bottom" constant="232" id="PW0-4c-rzQ"/>
                             <constraint firstItem="yV6-mp-sLn" firstAttribute="leading" secondItem="txo-gC-9c9" secondAttribute="leading" id="RPT-BI-7Co"/>
                             <constraint firstItem="7N9-6l-oup" firstAttribute="top" secondItem="ITa-8j-8UG" secondAttribute="bottom" constant="72" id="Sij-Vo-tFu"/>
                             <constraint firstItem="ITa-8j-8UG" firstAttribute="top" secondItem="jGL-cg-bX3" secondAttribute="top" constant="203" id="WHL-n7-G7R"/>
                             <constraint firstItem="ITa-8j-8UG" firstAttribute="leading" secondItem="7N9-6l-oup" secondAttribute="leading" id="WWA-SJ-WwJ"/>
                             <constraint firstItem="ITa-8j-8UG" firstAttribute="leading" secondItem="yV6-mp-sLn" secondAttribute="trailing" constant="41" id="hjc-NW-W3b"/>
+                            <constraint firstItem="7N9-6l-oup" firstAttribute="leading" secondItem="yV6-mp-sLn" secondAttribute="trailing" constant="41" id="n1P-Bc-Msq"/>
                             <constraint firstItem="jGL-cg-bX3" firstAttribute="trailing" secondItem="8wG-NU-t4I" secondAttribute="trailing" constant="145" id="qFU-o9-JM3"/>
                             <constraint firstItem="ITa-8j-8UG" firstAttribute="trailing" secondItem="txo-gC-9c9" secondAttribute="trailingMargin" id="taO-pD-dNv"/>
                             <constraint firstItem="8wG-NU-t4I" firstAttribute="leading" secondItem="jGL-cg-bX3" secondAttribute="leading" constant="148" id="tj5-RP-aiB"/>
