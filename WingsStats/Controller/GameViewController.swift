@@ -65,7 +65,7 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 }
                 self.tableView.reloadData()
             } else {
-            presentStatsAlert()
+                presentStatsAlert()
             }
         } else {
             presentStatsAlert()
@@ -73,12 +73,45 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         
     }
     
+    
     @IBAction func endGame(_ sender: Any) {
         for player in team.playersInTeam {
+            dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").setValue(getPlusStatsValue(player: player) + player.gamePlus)
+            dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").setValue(getMinusStatsValue(player: player) + player.gameMinus)
+            dataBase.child("teams").child(team.teamName).child(player.name).child("total").setValue(getTotalStatsValue(player: player) + player.gameTotal)
+            
             finishAGame(player: player)
         }
-        self.navigationController?.popViewController(animated: true)
+        
+        // FÅ VC:N ATT STÄNGA NER SIG EFTER DETTA SÅ ATT MAN INTE KAN ÄNDRA MER I MATCHEN.
     }
+    
+    func getPlusStatsValue(player : Player) -> Int{
+        var snapshotValue : Int = 0
+        dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").observe(.value, with: {  (snapshot) in
+            snapshotValue = snapshot.value as! Int
+        })
+        print(snapshotValue)
+        return snapshotValue
+    }
+    func getMinusStatsValue(player : Player) -> Int {
+        var snapshotValue : Int = 0
+        dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+        })
+        print(snapshotValue)
+        return snapshotValue
+    }
+    func getTotalStatsValue(player : Player) -> Int{
+        var snapshotValue : Int = 0
+        dataBase.child("teams").child(team.teamName).child(player.name).child("total").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+        })
+        print(snapshotValue)
+        return snapshotValue
+    }
+    
+    
     func presentStatsAlert() {
         let alert = UIAlertController(title: "Error", message: "You have to choose a player to add stats for.", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in })

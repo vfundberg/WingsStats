@@ -46,7 +46,7 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
         if addText.hasText {
             newTeam.teamName = addText.text!
             // ÄNDRA HÄR SÅ ATT DET HÄR SKAPAS ETT LAGNAMN DÄR SPELARNA KAN HAMNA UNDER, just nu blir det bara teams - players - Victor Fundberg
-            dataBase.child("teams").child(newTeam.teamName)
+            dataBase.child("teams").child(newTeam.teamName).childByAutoId()
             teamLabel.text = newTeam.teamName
             print(newTeam.teamName)
             addButton.isHidden = true
@@ -65,9 +65,9 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
             let playerName = addText.text
             let newPlayer : Player = Player(name: playerName!)
             newTeam.playersInTeam.append(newPlayer)
-            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["plusStat" : 0])
-            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["minusStat" : 0])
-            dataBase.child("teams").child("players").child(playerName!).childByAutoId().setValue(["total" : 0])
+            dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("plusStat").setValue(0)
+            dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("minusStat").setValue(0)
+            dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("total").setValue(0)
             tableView.reloadData()
             for p in newTeam.playersInTeam {
             print(p.name)

@@ -40,4 +40,3 @@ func finishAGame(player : Player) {
     player.gameMinus = 0
     player.gameTotal = 0
 }
-
