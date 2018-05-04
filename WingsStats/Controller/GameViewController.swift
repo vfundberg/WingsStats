@@ -73,20 +73,13 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     @IBAction func endGame(_ sender: Any) {
         for player in team.playersInTeam {
-//            let plus = getPlusStatsValue(player: player)
-//            print(plus)
-//            let minus = getMinusStatsValue(player: player)
-//            print(minus)
-//            let total = getTotalStatsValue(player: player)
-//            print(total)
             dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").setValue(player.plus + player.gamePlus)
             dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").setValue(player.minus + player.gameMinus)
             dataBase.child("teams").child(team.teamName).child(player.name).child("total").setValue(player.total + player.gameTotal)
             
             finishAGame(player: player)
         }
-//        self.navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
     }
     
     func getPlusStatsValue(player : Player) -> Player {

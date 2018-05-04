@@ -145,7 +145,7 @@
                                     <constraint firstAttribute="height" constant="44" id="ExE-zs-Glq"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="New game with new team ">
+                                <state key="normal" title="Create a new team">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
@@ -251,12 +251,11 @@
                                     <constraint firstAttribute="width" constant="145" id="hvI-Jw-X1e"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="ArialRoundedMTBold" family="Arial Rounded MT Bold" pointSize="17"/>
-                                <state key="normal" title="Start game">
+                                <state key="normal" title="Save team">
                                     <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
                                     <action selector="startGame:" destination="yCZ-mP-4LG" eventType="touchUpInside" id="vSS-tT-82w"/>
-                                    <segue destination="TcE-9J-787" kind="show" identifier="gameOn" id="ejm-0f-S1B"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XYO-Ju-ShV">
@@ -305,6 +304,7 @@
                         <outlet property="startGameButton" destination="lgc-Xb-1Uw" id="edI-ui-PEf"/>
                         <outlet property="tableView" destination="rsC-QH-btd" id="qiW-wi-nwa"/>
                         <outlet property="teamLabel" destination="FaL-be-1pN" id="Gbc-9f-Kyz"/>
+                        <segue destination="TcE-9J-787" kind="show" identifier="gameOn" id="QuD-HY-Eeg"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1s2-r8-ZAl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -377,7 +377,6 @@
                                 </state>
                                 <connections>
                                     <action selector="endGame:" destination="TcE-9J-787" eventType="touchUpInside" id="WE1-uF-Hrq"/>
-                                    <segue destination="ZmO-Aq-Mmh" kind="show" identifier="endGame" id="4DX-vC-RJ4"/>
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r1R-b5-VOT">
@@ -423,6 +422,7 @@
                     </view>
                     <connections>
                         <outlet property="tableView" destination="yV6-mp-sLn" id="tTl-O1-HyP"/>
+                        <segue destination="ZmO-Aq-Mmh" kind="show" identifier="endGame" id="B0P-VC-jWA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fVp-7e-EgD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -453,7 +453,7 @@
         <image name="add-icon" width="256" height="256"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ejm-0f-S1B"/>
-        <segue reference="4DX-vC-RJ4"/>
+        <segue reference="N0Y-EQ-D4w"/>
+        <segue reference="B0P-VC-jWA"/>
     </inferredMetricsTieBreakers>
 </document>

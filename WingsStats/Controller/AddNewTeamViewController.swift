@@ -84,6 +84,7 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     
     
     @IBAction func startGame(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -106,10 +107,6 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "gameOn" {
-            let destinationVC = segue.destination as! GameViewController
-            destinationVC.team = newTeam
-        }
     }
 
 
