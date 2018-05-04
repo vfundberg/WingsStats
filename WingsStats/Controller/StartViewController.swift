@@ -27,12 +27,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         existingTeams.delegate = self
         dataBase = Database.database().reference()
         
-        //hideExistingButtons()
         createTeams()
-        randomTeams = ["Victor","Mani","Robin"]
-        
-        //checkteamsbro()
-        // checkIfTeamsExist()
     }
 
     override func didReceiveMemoryWarning() {
@@ -104,7 +99,6 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 //        let valueSelected = stringTeams[row]
 //    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        print("COUNT")
         return stringTeams.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {

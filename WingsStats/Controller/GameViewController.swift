@@ -85,35 +85,27 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
             
             finishAGame(player: player)
         }
-        
+//        self.navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: true, completion: nil)
     }
     
-    func getPlusStatsValue(player : Player) -> Player{
-        //var snapshotValue : Int = 0
+    func getPlusStatsValue(player : Player) -> Player {
         dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").observe(.value, with: {  (snapshot) in
             player.plus = snapshot.value as! Int
-            //snapshotValue = snapshot.value as! Int
         })
         return player
-        //return snapshotValue
     }
     func getMinusStatsValue(player : Player) -> Player {
-        //var snapshotValue : Int = 0
         dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").observe(.value, with: { (snapshot) in
             player.minus = snapshot.value as! Int
-            //    snapshotValue = snapshot.value as! Int
         })
-        //return snapshotValue
         return player
     }
     func getTotalStatsValue(player : Player) -> Player {
-        //var snapshotValue : Int = 0
         dataBase.child("teams").child(team.teamName).child(player.name).child("total").observe(.value, with: { (snapshot) in
-          player.total = snapshot.value as! Int 
-            //  snapshotValue = snapshot.value as! Int
+          player.total = snapshot.value as! Int
         })
         return player
-        //return snapshotValue
     }
     
     
@@ -140,15 +132,6 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
-    
-    
-    
-    
-    
-    
-    
-    
-    
     /*
     // MARK: - Navigation
 
