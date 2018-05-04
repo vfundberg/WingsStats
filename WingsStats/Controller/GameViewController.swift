@@ -70,45 +70,50 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
         } else {
             presentStatsAlert()
         }
-        
     }
-    
-    
     @IBAction func endGame(_ sender: Any) {
         for player in team.playersInTeam {
-            dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").setValue(getPlusStatsValue(player: player) + player.gamePlus)
-            dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").setValue(getMinusStatsValue(player: player) + player.gameMinus)
-            dataBase.child("teams").child(team.teamName).child(player.name).child("total").setValue(getTotalStatsValue(player: player) + player.gameTotal)
+//            let plus = getPlusStatsValue(player: player)
+//            print(plus)
+//            let minus = getMinusStatsValue(player: player)
+//            print(minus)
+//            let total = getTotalStatsValue(player: player)
+//            print(total)
+            dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").setValue(player.plus + player.gamePlus)
+            dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").setValue(player.minus + player.gameMinus)
+            dataBase.child("teams").child(team.teamName).child(player.name).child("total").setValue(player.total + player.gameTotal)
             
             finishAGame(player: player)
         }
         
-        // FÅ VC:N ATT STÄNGA NER SIG EFTER DETTA SÅ ATT MAN INTE KAN ÄNDRA MER I MATCHEN.
     }
     
-    func getPlusStatsValue(player : Player) -> Int{
-        var snapshotValue : Int = 0
+    func getPlusStatsValue(player : Player) -> Player{
+        //var snapshotValue : Int = 0
         dataBase.child("teams").child(team.teamName).child(player.name).child("plusStat").observe(.value, with: {  (snapshot) in
-            snapshotValue = snapshot.value as! Int
+            player.plus = snapshot.value as! Int
+            //snapshotValue = snapshot.value as! Int
         })
-        print(snapshotValue)
-        return snapshotValue
+        return player
+        //return snapshotValue
     }
-    func getMinusStatsValue(player : Player) -> Int {
-        var snapshotValue : Int = 0
+    func getMinusStatsValue(player : Player) -> Player {
+        //var snapshotValue : Int = 0
         dataBase.child("teams").child(team.teamName).child(player.name).child("minusStat").observe(.value, with: { (snapshot) in
-            snapshotValue = snapshot.value as! Int
+            player.minus = snapshot.value as! Int
+            //    snapshotValue = snapshot.value as! Int
         })
-        print(snapshotValue)
-        return snapshotValue
+        //return snapshotValue
+        return player
     }
-    func getTotalStatsValue(player : Player) -> Int{
-        var snapshotValue : Int = 0
+    func getTotalStatsValue(player : Player) -> Player {
+        //var snapshotValue : Int = 0
         dataBase.child("teams").child(team.teamName).child(player.name).child("total").observe(.value, with: { (snapshot) in
-            snapshotValue = snapshot.value as! Int
+          player.total = snapshot.value as! Int 
+            //  snapshotValue = snapshot.value as! Int
         })
-        print(snapshotValue)
-        return snapshotValue
+        return player
+        //return snapshotValue
     }
     
     

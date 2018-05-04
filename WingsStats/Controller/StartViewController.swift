@@ -17,14 +17,22 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     
     var dataBase : DatabaseReference!
-    let teams = ["A-laget","B-laget","Juniorerna"]
+    var stringTeams : [String] = []
+    var teams : [Team] = []
+    var randomTeams : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         existingTeams.dataSource = self
         existingTeams.delegate = self
         dataBase = Database.database().reference()
-        checkIfTeamsExist()
+        
+        //hideExistingButtons()
+        createTeams()
+        randomTeams = ["Victor","Mani","Robin"]
+        
+        //checkteamsbro()
+        // checkIfTeamsExist()
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,37 +50,77 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         
     }
     
-    
-    
-    
-    
-    func checkIfTeamsExist() {
-        // kolla igenom databasen ifall det finns några lag med i den, i sånna fall så ska knappen med starta med lag visas, annars inte
-        //if lag finns {
-        // print("Teams are existing in the database")
-        //} else {
-        //existingTeamButton.isHidden = true
-        //}
+    func createTeams() {
+        dataBase.child("teams").observe(.value) { (teamSnapshot) in
+            let teamSnapshotValue = teamSnapshot.value as! Dictionary<String,AnyObject>
+            for (team, _) in teamSnapshotValue {
+                let myteam = Team()
+                print("TEAM : \(team)")
+                myteam.teamName = team
+                self.teams.append(myteam)
+                self.stringTeams.append(myteam.teamName)
+                self.dataBase.child("teams").child(myteam.teamName).observe(.value, with: { (playerSnapshot) in
+                    let playerSnapshotValue = playerSnapshot.value as! Dictionary<String,AnyObject>
+                    for (playerName, _) in playerSnapshotValue {
+                        let myPlayer = Player(name: playerName)
+                        print("PLAYER : \(myPlayer.name)")
+                        self.getPlayerStats(team: myteam.teamName, player: myPlayer)
+                        myteam.playersInTeam.append(myPlayer)
+                    }
+                })
+            }
+            print(self.stringTeams)
+            print(self.randomTeams)
+            DispatchQueue.main.async {
+                self.existingTeams.reloadAllComponents()
+            }
+            
+        }
         
     }
+
     
+    func getPlayerStats(team : String, player : Player){
+        let playerName = player.name
+        var snapshotValue : Int = 0
+        dataBase.child("teams").child(team).child(playerName).child("plusStat").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.plus = snapshotValue
+        })
+        dataBase.child("teams").child(team).child(playerName).child("minusStat").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.minus = snapshotValue
+        })
+        dataBase.child("teams").child(team).child(playerName).child("total").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.total = snapshotValue
+        })
+    }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
-    
+//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+//        let valueSelected = stringTeams[row]
+//    }
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return teams.count
+        print("COUNT")
+        return stringTeams.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return teams[row]
+        return stringTeams[row]
     }
     
     
-//    // In a storyboard-based application, you will often want to do a little preparation before navigation
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        // Get the new view controller using segue.destinationViewController.
-//        // Pass the selected object to the new view
-//    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showTotals" {
+            let destinationVC = segue.destination as! TopListTableViewController
+            destinationVC.team = teams[existingTeams.selectedRow(inComponent: 0)]
+        } else if segue.identifier == "existingTeamGame" {
+            let destinationVC = segue.destination as! GameViewController
+            destinationVC.team = teams[existingTeams.selectedRow(inComponent: 0)]
+        }
+    }
     
 }

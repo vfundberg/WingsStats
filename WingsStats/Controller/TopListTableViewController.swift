@@ -9,35 +9,20 @@
 import UIKit
 import Firebase
 
-class TopListTableViewController: UITableViewController, UISearchResultsUpdating {
-    
-    var searchController : UISearchController!
-    var searchResult : [String] = []
-    var players : [String] = []
+class TopListTableViewCell : UITableViewCell {
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var plusLabel: UILabel!
+    @IBOutlet weak var minusLabel: UILabel!
+    @IBOutlet weak var totalLabel: UILabel!
+}
+class TopListTableViewController: UITableViewController {
+
     var dataBase : DatabaseReference!
+    var team : Team = Team()
     
-    var shouldUseSearchResult : Bool {
-        if let t = searchController.searchBar.text {
-            if t.isEmpty {
-                return false
-            }
-        } else {
-            return false
-        }
-        return searchController.isActive
-    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Search for a specific player"
-        definesPresentationContext = true
         dataBase = Database.database().reference()
-        searchController = UISearchController(searchResultsController: nil)
-        searchController.searchResultsUpdater = self
-        searchController.dimsBackgroundDuringPresentation = false
-        navigationItem.searchController = searchController
-        
-        
-        players = ["Victor Fundberg","Claudio Agus","Joakim Örneflo","Johannes Andersson","Jacob Henriksson","Alessandro Agus","Andreas Esmyr","Christoffer Strand","Adam Broberg","Peter Morer0","Tobias Bengston","Andreas Lundin","Pontus Vallin"]
         
     }
 
@@ -46,44 +31,23 @@ class TopListTableViewController: UITableViewController, UISearchResultsUpdating
         // Dispose of any resources that can be recreated.
     }
 
-    func updateSearchResults(for searchController: UISearchController) {
-        if let text = searchController.searchBar.text {
-            searchResult = players.filter { $0.lowercased().contains(text.lowercased()) }
-        } else {
-            searchResult = []
-        }
-        tableView.reloadData()
-    }
-    
-
     override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        if shouldUseSearchResult {
-            return searchResult.count
-        } else {
-            return players.count
-        }
-        
+        return team.playersInTeam.count
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-
-        if shouldUseSearchResult {
-            let playerName = searchResult[indexPath.row]
-            cell.textLabel?.text = playerName
-        } else {
-            let playerName = players[indexPath.row]
-            cell.textLabel?.text = playerName
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TopListTableViewCell", for: indexPath) as! TopListTableViewCell
         
-
+        cell.nameLabel.text = team.playersInTeam[indexPath.row].name
+        cell.plusLabel.text = "\(team.playersInTeam[indexPath.row].plus)"
+        cell.minusLabel.text = "\(team.playersInTeam[indexPath.row].minus)"
+        cell.totalLabel.text = "\(team.playersInTeam[indexPath.row].total)"
+    
         return cell
     }
     
