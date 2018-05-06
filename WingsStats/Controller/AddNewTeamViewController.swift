@@ -45,7 +45,6 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBAction func addTeam(_ sender: Any) {
         if addText.hasText {
             newTeam.teamName = addText.text!
-            // ÄNDRA HÄR SÅ ATT DET HÄR SKAPAS ETT LAGNAMN DÄR SPELARNA KAN HAMNA UNDER, just nu blir det bara teams - players - Victor Fundberg
             dataBase.child("teams").child(newTeam.teamName).childByAutoId()
             teamLabel.text = newTeam.teamName
             print(newTeam.teamName)
@@ -64,15 +63,12 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
         if addText.hasText {
             let playerName = addText.text
             let newPlayer : Player = Player(name: playerName!)
-            newTeam.playersInTeam.append(newPlayer)
+            newTeam.playersInTeam.insert(newPlayer, at: 0)
             dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("plusStat").setValue(0)
             dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("minusStat").setValue(0)
             dataBase.child("teams").child(newTeam.teamName).child(playerName!).child("total").setValue(0)
             tableView.reloadData()
-            for p in newTeam.playersInTeam {
-            print(p.name)
-        }
-        addText.text = ""
+            addText.text = ""
         } else {
             let alert = UIAlertController(title: "Error", message: "You have to give the player a name.", preferredStyle: .alert)
             let okAction = UIAlertAction(title: "OK", style: .default, handler: { action in })
@@ -81,6 +77,19 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
         }
     }
     
+//    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        return true
+//    }
+//    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+//        if editingStyle == .delete {
+//            let playerName = newTeam.playersInTeam[indexPath.row].name
+//            dataBase.child("teams").child(newTeam.teamName).child(playerName).removeValue()
+//            newTeam.playersInTeam.remove(at: indexPath.row)
+//            tableView.deleteRows(at: [indexPath], with: .fade)
+//            tableView.reloadData()
+//        }
+//        
+//    }
     
     
     @IBAction func startGame(_ sender: Any) {
@@ -92,7 +101,7 @@ class AddNewTeamViewController: UIViewController, UITableViewDelegate, UITableVi
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return newTeam.playersInTeam.count
+            return newTeam.playersInTeam.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

@@ -49,20 +49,26 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         dataBase.child("teams").observe(.value) { (teamSnapshot) in
             let teamSnapshotValue = teamSnapshot.value as! Dictionary<String,AnyObject>
             for (team, _) in teamSnapshotValue {
-                let myteam = Team()
-                print("TEAM : \(team)")
-                myteam.teamName = team
-                self.teams.append(myteam)
-                self.stringTeams.append(myteam.teamName)
-                self.dataBase.child("teams").child(myteam.teamName).observe(.value, with: { (playerSnapshot) in
-                    let playerSnapshotValue = playerSnapshot.value as! Dictionary<String,AnyObject>
-                    for (playerName, _) in playerSnapshotValue {
-                        let myPlayer = Player(name: playerName)
-                        print("PLAYER : \(myPlayer.name)")
-                        self.getPlayerStats(team: myteam.teamName, player: myPlayer)
-                        myteam.playersInTeam.append(myPlayer)
-                    }
-                })
+                if self.stringTeams.contains(team) {
+                    print("Team already exists in the pickerview")
+                } else {
+                    let myteam = Team()
+                    print("TEAM : \(team)")
+                    myteam.teamName = team
+                    self.teams.append(myteam)
+                    self.stringTeams.append(myteam.teamName)
+                    self.dataBase.child("teams").child(myteam.teamName).observe(.value, with: { (playerSnapshot) in
+                        let playerSnapshotValue = playerSnapshot.value as! Dictionary<String,AnyObject>
+                        for (playerName, _) in playerSnapshotValue {
+                            let myPlayer = Player(name: playerName)
+                            print("PLAYER : \(myPlayer.name)")
+                            self.getPlayerStats(team: myteam.teamName, player: myPlayer)
+                            myteam.playersInTeam.append(myPlayer)
+                        }
+                    })
+                    
+                }
+                
             }
             print(self.stringTeams)
             print(self.randomTeams)
