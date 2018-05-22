@@ -16,21 +16,51 @@ class TopListTableViewCell : UITableViewCell {
     @IBOutlet weak var totalLabel: UILabel!
 }
 class TopListTableViewController: UITableViewController {
-
+    var teamName : String = ""
     var dataBase : DatabaseReference!
     var team : Team = Team()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         dataBase = Database.database().reference()
-        
+        createTeam()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    
+    func createTeam(){
+        team.teamName = teamName
+        self.dataBase.child("teams").child(team.teamName).observe(.value, with: { (playerSnapshot) in
+            let playerSnapshotValue = playerSnapshot.value as! Dictionary<String,AnyObject>
+            for (playerName, _) in playerSnapshotValue {
+                let myPlayer = Player(name: playerName)
+                print("PLAYER : \(myPlayer.name)")
+                self.getPlayerStats(team: self.team.teamName, player: myPlayer)
+                self.team.playersInTeam.append(myPlayer)
+            }
+        })
+    }
+    
+    func getPlayerStats(team : String, player : Player){
+        let playerName = player.name
+        var snapshotValue : Int = 0
+        dataBase.child("teams").child(team).child(playerName).child("plusStat").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.plus = snapshotValue
+        })
+        dataBase.child("teams").child(team).child(playerName).child("minusStat").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.minus = snapshotValue
+        })
+        dataBase.child("teams").child(team).child(playerName).child("total").observe(.value, with: { (snapshot) in
+            snapshotValue = snapshot.value as! Int
+            player.total = snapshotValue
+        })
+    }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }

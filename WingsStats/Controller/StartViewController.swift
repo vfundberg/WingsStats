@@ -19,7 +19,6 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     var dataBase : DatabaseReference!
     var stringTeams : [String] = []
     var teams : [Team] = []
-    var randomTeams : [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,53 +48,20 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         dataBase.child("teams").observe(.value) { (teamSnapshot) in
             let teamSnapshotValue = teamSnapshot.value as! Dictionary<String,AnyObject>
             for (team, _) in teamSnapshotValue {
-                if self.stringTeams.contains(team) {
-                    print("Team already exists in the pickerview")
-                } else {
-                    let myteam = Team()
+//                 self.stringTeams.contains(team) {
+//                    print("Team already exists in the pickerview")
+//                } else {
+//                    let myteam = Team()
                     print("TEAM : \(team)")
-                    myteam.teamName = team
-                    self.teams.append(myteam)
-                    self.stringTeams.append(myteam.teamName)
-                    self.dataBase.child("teams").child(myteam.teamName).observe(.value, with: { (playerSnapshot) in
-                        let playerSnapshotValue = playerSnapshot.value as! Dictionary<String,AnyObject>
-                        for (playerName, _) in playerSnapshotValue {
-                            let myPlayer = Player(name: playerName)
-                            print("PLAYER : \(myPlayer.name)")
-                            self.getPlayerStats(team: myteam.teamName, player: myPlayer)
-                            myteam.playersInTeam.append(myPlayer)
-                        }
-                    })
-                    
-                }
-                
+//                    myteam.teamName = team
+//                    self.teams.append(myteam)
+                    self.stringTeams.append(team)
             }
             print(self.stringTeams)
-            print(self.randomTeams)
             DispatchQueue.main.async {
                 self.existingTeams.reloadAllComponents()
             }
-            
         }
-        
-    }
-
-    
-    func getPlayerStats(team : String, player : Player){
-        let playerName = player.name
-        var snapshotValue : Int = 0
-        dataBase.child("teams").child(team).child(playerName).child("plusStat").observe(.value, with: { (snapshot) in
-            snapshotValue = snapshot.value as! Int
-            player.plus = snapshotValue
-        })
-        dataBase.child("teams").child(team).child(playerName).child("minusStat").observe(.value, with: { (snapshot) in
-            snapshotValue = snapshot.value as! Int
-            player.minus = snapshotValue
-        })
-        dataBase.child("teams").child(team).child(playerName).child("total").observe(.value, with: { (snapshot) in
-            snapshotValue = snapshot.value as! Int
-            player.total = snapshotValue
-        })
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -116,10 +82,10 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showTotals" {
             let destinationVC = segue.destination as! TopListTableViewController
-            destinationVC.team = teams[existingTeams.selectedRow(inComponent: 0)]
+            destinationVC.teamName = stringTeams[existingTeams.selectedRow(inComponent: 0)]
         } else if segue.identifier == "existingTeamGame" {
             let destinationVC = segue.destination as! GameViewController
-            destinationVC.team = teams[existingTeams.selectedRow(inComponent: 0)]
+            destinationVC.teamName = stringTeams[existingTeams.selectedRow(inComponent: 0)]
         }
     }
     
