@@ -43,11 +43,9 @@ class GameViewController: UIViewController, UITableViewDelegate, UITableViewData
                 print("PLAYER : \(myPlayer.name)")
                 self.getPlayerStats(team: self.team.teamName, player: myPlayer)
                 self.team.playersInTeam.append(myPlayer)
+                self.tableView.reloadData()
             }
         })
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
     }
     
     func getPlayerStats(team : String, player : Player){

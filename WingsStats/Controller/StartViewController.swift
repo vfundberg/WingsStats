@@ -45,21 +45,31 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func createTeams() {
-        dataBase.child("teams").observe(.value) { (teamSnapshot) in
+//      let  teamDB = Database.database().reference().child("teams")
+//
+//        teamDB.observe(.childAdded, with:{ (snapshot) in
+//        let snapshotValue = snapshot.value as! Dictionary<String,AnyObject>
+//
+//        let text = snapshotValue
+//        stringTeams.append(snapshotValue)
+//            )}
+            dataBase.child("teams").observe(.value) { (teamSnapshot) in
             let teamSnapshotValue = teamSnapshot.value as! Dictionary<String,AnyObject>
-            for (team, _) in teamSnapshotValue {
-//                 self.stringTeams.contains(team) {
+                for (team, _) in teamSnapshotValue{
+//                                 self.stringTeams.contains(team) {
 //                    print("Team already exists in the pickerview")
 //                } else {
 //                    let myteam = Team()
-                    print("TEAM : \(team)")
+//                    print("TEAM : \(team)")
 //                    myteam.teamName = team
 //                    self.teams.append(myteam)
-                    self.stringTeams.append(team)
-            }
-            print(self.stringTeams)
-            DispatchQueue.main.async {
+                print(team)
+                self.stringTeams.append(team)
                 self.existingTeams.reloadAllComponents()
+                print(self.stringTeams)
+            }
+            DispatchQueue.main.async {
+                
             }
         }
     }

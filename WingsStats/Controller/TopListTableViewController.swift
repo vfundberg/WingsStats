@@ -60,6 +60,10 @@ class TopListTableViewController: UITableViewController {
             snapshotValue = snapshot.value as! Int
             player.total = snapshotValue
         })
+        DispatchQueue.main.async {
+        self.tableView.reloadData()
+        }
+        
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
