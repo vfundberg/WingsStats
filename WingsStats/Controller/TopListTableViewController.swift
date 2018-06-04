@@ -24,6 +24,9 @@ class TopListTableViewController: UITableViewController {
         super.viewDidLoad()
         dataBase = Database.database().reference()
         createTeam()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.tableView.reloadData()
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -60,9 +63,9 @@ class TopListTableViewController: UITableViewController {
             snapshotValue = snapshot.value as! Int
             player.total = snapshotValue
         })
-        DispatchQueue.main.async {
-        self.tableView.reloadData()
-        }
+//        DispatchQueue.main.async {
+//        self.tableView.reloadData()
+//        }
         
     }
     override func numberOfSections(in tableView: UITableView) -> Int {

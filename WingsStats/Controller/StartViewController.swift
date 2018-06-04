@@ -18,7 +18,9 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     
     var dataBase : DatabaseReference!
     var stringTeams : [String] = []
-    var teams : [Team] = []
+    var teams : [String] = []
+    var idiot : Int = 10
+   
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +29,10 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         dataBase = Database.database().reference()
         
         createTeams()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        self.existingTeams.reloadAllComponents()
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,33 +51,18 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     }
     
     func createTeams() {
-//      let  teamDB = Database.database().reference().child("teams")
-//
-//        teamDB.observe(.childAdded, with:{ (snapshot) in
-//        let snapshotValue = snapshot.value as! Dictionary<String,AnyObject>
-//
-//        let text = snapshotValue
-//        stringTeams.append(snapshotValue)
-//            )}
-            dataBase.child("teams").observe(.value) { (teamSnapshot) in
+            self.dataBase.child("teams").observe(.value) { (teamSnapshot) in
             let teamSnapshotValue = teamSnapshot.value as! Dictionary<String,AnyObject>
-                for (team, _) in teamSnapshotValue{
-//                                 self.stringTeams.contains(team) {
-//                    print("Team already exists in the pickerview")
-//                } else {
-//                    let myteam = Team()
-//                    print("TEAM : \(team)")
-//                    myteam.teamName = team
-//                    self.teams.append(myteam)
-                print(team)
-                self.stringTeams.append(team)
-                self.existingTeams.reloadAllComponents()
-                print(self.stringTeams)
-            }
-            DispatchQueue.main.async {
+            self.stringTeams = Array(teamSnapshotValue.keys.map{ $0 })
+        
+               
                 
+            DispatchQueue.main.async {
+                self.existingTeams.reloadAllComponents()
+
             }
         }
+        
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -84,6 +75,7 @@ class StartViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         return stringTeams.count
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        
         return stringTeams[row]
     }
     

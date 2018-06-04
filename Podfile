@@ -7,3 +7,4 @@ target 'WingsStats' do
  pod 'Firebase/Database'
 
 end
+    
